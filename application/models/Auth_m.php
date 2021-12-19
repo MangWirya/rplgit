@@ -37,5 +37,3 @@ class Auth_m extends CI_Model {
         $this->db->update($this->table,$data,[$this->ID=>$id]);
     }
 }
-
-/* End of file Auth_m.php */

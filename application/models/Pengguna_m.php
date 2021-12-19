@@ -7,7 +7,6 @@ class Pengguna_m extends CI_Model
 
     private $table = 'user';
     private $ID = 'iduser';
-    private $IDbantuan = 'idbantuan';
 
     public function getAll()
     {
@@ -37,11 +36,6 @@ class Pengguna_m extends CI_Model
         $this->db->delete($this->table, [$this->ID => $id]);
     }
 
-    public function hapusbantuan($id)
-    {
-        $this->db->delete('bantuan', [$this->IDbantuan => $id]);
-    }
-
     public function jumlahpenduduk($where)
     {
         $this->db->select('*');
@@ -60,11 +54,4 @@ class Pengguna_m extends CI_Model
         return $hasil;
     }
 
-    public function getbantuan()
-    {
-        $this->db->select('*');
-        $this->db->from('bantuan');
-        $this->db->order_by("idbantuan", "desc");
-        return $this->db->get()->result_array();
-    }
 }

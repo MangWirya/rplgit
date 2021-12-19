@@ -52,13 +52,11 @@
                     <hr>
                     <br>
                     <center>
-                        <font size="4"><b>BERITA ACARA</b></font>
+                        <font size="4"><b>SURAT TUGAS</b></font>
                         <br><br>
-                        <font size="2"><b><?= $surat->judul; ?></b></font>
+                        <font size="2"><b>NOMOR: <?= $surat->idsuratizinkegiatan . '/ST/C/FTI/2021' ?></b></font>
                         <br><br>
-                        <font size="2"><b>NOMOR: <?= $surat->idsuratberitaacara . '/BA/C/FTI/2021' ?></b></font>
-                        <br><br>
-                        <font size="2">TANGGAL SURAT: <?= $this->pengajuan_m->format_tanggal($surat->tanggal) . '/BA/C/FTI/2021' ?></font>
+                        <font size="2">TANGGAL SURAT: <?= $this->pengajuan_m->format_tanggal($surat->tanggal) . '/ST/C/FTI/2021' ?></font>
                     </center>
                 </td>
             </tr>
@@ -67,36 +65,45 @@
         <table width="625">
             <tr>
                 <td>
-                    <font size="2">
-                        <?= $surat->deskripsi; ?>
+                    <font size="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        Dengan ini Dekan Fakultas Teknologi Informasi Universitas Kristen Duta Wacana Yogyakarta memberikan tugas kepada :
                     </font>
                 </td>
             </tr>
         </table>
         <br>
+        <table width="555" class="gayatable">
+            <thead>
+                <th class="gayatable">Nama</th>
+                <th class="gayatable">NIP</th>
+            </thead>
+            <?php
+            $profil = $this->auth_m->getme($surat->iduser);
+            ?>
+            <tbody>
+                <tr>
+                    <td class="gayatable"><?=  $profil->nama; ?></td>
+                    <td align="center" class="gayatable"><?= $profil->nim; ?></td>
+                </tr>
+            </tbody>
+        </table>
         <br>
         <table width="625">
             <tr>
                 <td>
-                    <font size="2">Demikian Berita Acara ini dibuat dengan sebenarnya, untuk dapat dipergunakan sebagaimana mestinya.
+                    <font size="2">Untuk Melaksanakan Tugas Yaitu : <?= $surat->judulkegiatan; ?>, yang diselenggarakan oleh : <?= $surat->penyelenggarakegiatan; ?>, pada tanggal <?= $surat->tanggalmulai ?> - <?= $surat->tanggalselesai ?>.
+                        <br><br>Demikian surat tugas ini dibuat untuk dapat dipergunakan sebagaimana perlunya. Kepada penerima tugas setelah menyelesaikan tugas dimohon menyampaikan laporan kepada pemberi tugas.
                     </font>
                 </td>
             </tr>
         </table>
         <br>
-        <center>
-            <font size="2">
-                Yogyakarta,<?= $this->pengajuan_m->format_tanggal($surat->tanggal) ?>
-                <br><br>
-                Mengetahui
-            </font>
-        </center>
-        <br><br>
         <table width="625">
             <tr>
-                <td width="50"></td>
-                <td width="320">Dekan, <br><br><br><br><br><?= $surat->ttd; ?></b></td>
-                <td>Perwakilan <?= $surat->namamitra; ?>, <br><br><br><br><br><?= $surat->namaperwakilanmitra; ?></b></td>
+                <?php
+                $now = date("Y-m-d");
+                ?>
+                <td><?= $this->pengajuan_m->format_tanggal($surat->tanggal) ?><br><b>Dekan, <?php echo date_indo($now); ?><br><br><br><br><br><?= $surat->ttd; ?></b></td>
             </tr>
         </table>
     </center>

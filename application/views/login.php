@@ -47,7 +47,7 @@
                                         </div>
                                         <form class="user" action="<?= base_url('auth/check_login'); ?>" method="post">
                                             <div class="form-group">
-                                                <input type="text" name="email" class="form-control form-control-user" placeholder="NIM / NIK">
+                                                <input type="text" name="email" class="form-control form-control-user" placeholder="NIM / NIP / NIK">
                                             </div>
                                             <div class="form-group">
                                                 <input type="password" name="password" class="form-control form-control-user" placeholder="Password">

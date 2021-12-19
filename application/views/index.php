@@ -84,6 +84,7 @@
                             <h6 class="collapse-header">Permohonan Surat</h6>
                             <a class="collapse-item" href="<?= base_url('pengajuan'); ?>">Surat Kerja Praktek</a>
                             <a class="collapse-item" href="<?= base_url('pengajuan/suratizinkegiatan'); ?>">Surat Izin Kegiatan</a>
+                            <a class="collapse-item" href="<?= base_url('pengajuan/surattugas'); ?>">Surat Tugas</a>
                         </div>
                     </div>
                 </li>
@@ -131,25 +132,38 @@
                 </li>
             <?php } elseif (__session('level') == 'dosen') { ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url('master/pengguna/pengguna'); ?>">
-                        <i class="fas fa-fw fa-users"></i>
-                        <span>Daftar Pengguna</span></a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
-                        <i class="fas fa-fw fa-wrench"></i>
+                        <i class="fas fa-fw fa-list"></i>
                         <span>Permohonan Saya</span>
                     </a>
                     <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Permohonan Surat</h6>
+                            <h6 class="collapse-header">Permohonan Saya</h6>
+                            <a class="collapse-item" href="<?= base_url('pengajuan/surattugas'); ?>">Surat Tugas</a>
                         </div>
                     </div>
                 </li>
-                <li class="nav-item <?= isset($buatpengajuan) ? 'active' : ''; ?>">
-                    <a class="nav-link" href="<?= base_url('tambahpengajuan'); ?>">
-                        <i class="fas fa-fw fa-edit"></i>
-                        <span>Buat Permohonan</span></a>
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
+                        <i class="fas fa-fw fa-plus"></i>
+                        <span>Buat Permohonan</span>
+                    </a>
+                    <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+                        <div class="bg-white py-2 collapse-inner rounded">
+                            <h6 class="collapse-header">Buat Permohonan</h6>
+                            <a class="collapse-item" href="<?= base_url('pengajuan/surattugastambah'); ?>">Surat Tugas</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('pengajuan/suratpengumuman'); ?>">
+                        <i class="fas fa-fw fa-bell"></i>
+                        <span>Surat Pengumuman</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url('pengajuan/suratupload'); ?>">
+                        <i class="fas fa-fw fa-book"></i>
+                        <span>Surat Upload</span></a>
                 </li>
             <?php } ?>
             <li class="nav-item">

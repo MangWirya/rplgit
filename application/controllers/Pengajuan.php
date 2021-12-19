@@ -307,7 +307,7 @@ class Pengajuan extends CI_Controller
                 'status' => 'Menunggu Persetujuan',
             ];
             $this->db->insert('suratizinkegiatan', $data);
-            $this->session->set_flashdata('success', 'Surat Izin Kegiatan Berhasil Di Tambah, Mohon Di Tunggu');
+            $this->session->set_flashdata('success', 'Surat Tugas Berhasil Di Tambah, Mohon Di Tunggu');
             redirect('pengajuan/suratizinkegiatan');
         }
         $data['profil'] = $this->auth_m->getme($this->session->userdata('iduser'));
@@ -353,13 +353,13 @@ class Pengajuan extends CI_Controller
             ),
             'suratizinkegiatan'
         );
-        $this->session->set_flashdata('success', 'Surat Izin Kegiatan berhasil di hapus');
+        $this->session->set_flashdata('success', 'Surat Tugas berhasil di hapus');
         redirect('pengajuan/suratizinkegiatan');
     }
 
     public function suratizinkegiatanverifikasi($id)
     {
-        $this->form_validation->set_rules('idsuratizinkegiatan', 'ID Surat Izin Kegiatan', 'required');
+        $this->form_validation->set_rules('idsuratizinkegiatan', 'ID Surat Tugas', 'required');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
         if ($this->form_validation->run()) {
             $data = [
@@ -572,7 +572,7 @@ class Pengajuan extends CI_Controller
 
     public function suratuploadverifikasi($id)
     {
-        $this->form_validation->set_rules('idsuratupload', 'ID Surat Izin Kegiatan', 'required');
+        $this->form_validation->set_rules('idsuratupload', 'ID Surat Tugas', 'required');
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
         if ($this->form_validation->run()) {
             $data = [
@@ -594,5 +594,118 @@ class Pengajuan extends CI_Controller
         $this->load->view('index', $data);
     }
 
+    public function surattugas()
+    {
+        $data['pengajuan_surat'] = true;
+        if ($this->session->userdata('level') == "user") {
+            $data['pengajuan_all'] = $this->pengajuan_m->get_where(array('iduser' => $this->session->userdata('iduser')), 'surattugas');
+        } else {
+            $data['pengajuan_all'] = $this->pengajuan_m->get_where(array(), 'surattugas');
+        }
+        $data['content'] = 'surattugas';
+        $this->load->view('index', $data);
+    }
 
+    public function surattugastambah()
+    {
+        $this->form_validation->set_rules('iduser', 'Id User', 'required');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+
+        if ($this->form_validation->run()) {
+            $data = [
+                'iduser' => $this->session->userdata('iduser'),
+                'judultugas' => $this->input->post('judultugas', true),
+                'penyelenggarakegiatan' => $this->input->post('penyelenggarakegiatan', true),
+                'deskripsi' => $this->input->post('deskripsi', true),
+                'tanggal' => $this->input->post('tanggal', true),
+                'tanggalmulai' => $this->input->post('tanggalmulai', true),
+                'tanggalselesai' => $this->input->post('tanggalselesai', true),
+                'status' => 'Menunggu Persetujuan',
+            ];
+            $this->db->insert('surattugas', $data);
+            $this->session->set_flashdata('success', 'Surat Tugas Berhasil Di Tambah, Mohon Di Tunggu');
+            redirect('pengajuan/surattugas');
+        }
+        $data['profil'] = $this->auth_m->getme($this->session->userdata('iduser'));
+        $data['content'] = 'surattugastambah';
+        $this->load->view('index', $data);
+    }
+
+    public function surattugasedit($id)
+    {
+        $this->form_validation->set_rules('idsurattugas', 'ID Surat Kerja Praktek', 'required');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+
+        if ($this->form_validation->run()) {
+            $data = [
+                'judultugas' => $this->input->post('judultugas', true),
+                'penyelenggarakegiatan' => $this->input->post('penyelenggarakegiatan', true),
+                'deskripsi' => $this->input->post('deskripsi', true),
+                'tanggal' => $this->input->post('tanggal', true),
+                'tanggalmulai' => $this->input->post('tanggalmulai', true),
+                'tanggalselesai' => $this->input->post('tanggalselesai', true),
+            ];
+            $this->db->set($data);
+            $this->db->where('idsurattugas', $id);
+            $this->db->update('surattugas');
+            $this->session->set_flashdata('success', 'Permohonan berhasil di edit');
+            redirect('pengajuan/surattugas');
+        }
+        $data['surat'] = $this->pengajuan_m->getbyid(
+            array(
+                'idsurattugas'     => $id,
+            ),
+            'surattugas'
+        );
+        $data['content'] = 'surattugasedit';
+        $this->load->view('index', $data);
+    }
+
+    public function surattugashapus($id)
+    {
+        $this->pengajuan_m->hapus(
+            array(
+                'idsurattugas'     => $id,
+            ),
+            'surattugas'
+        );
+        $this->session->set_flashdata('success', 'Surat Tugas berhasil di hapus');
+        redirect('pengajuan/surattugas');
+    }
+
+    public function surattugasverifikasi($id)
+    {
+        $this->form_validation->set_rules('idsurattugas', 'ID Surat Tugas', 'required');
+        $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
+        if ($this->form_validation->run()) {
+            $data = [
+                'status' => $this->input->post('status', true),
+                'ttd' => $this->input->post('ttd', true),
+            ];
+            $this->db->set($data);
+            $this->db->where('idsurattugas', $id);
+            $this->db->update('surattugas');
+            $this->session->set_flashdata('success', 'Permohonan berhasil di verifikasi');
+            redirect('pengajuan/surattugas');
+        }
+        $data['surat'] = $this->pengajuan_m->getbyid(
+            array(
+                'idsurattugas'     => $id,
+            ),
+            'surattugas'
+        );
+        $data['content'] = 'surattugasverifikasi';
+        $this->load->view('index', $data);
+    }
+
+    public function surattugascetak($id)
+    {
+        $data['surat'] = $this->pengajuan_m->getbyid(
+            array(
+                'idsurattugas'     => $id,
+            ),
+            'surattugas'
+        );
+        $this->load->view('surattugascetak', $data);
+    }
 }

@@ -117,7 +117,7 @@
                 <?php
                 $now = date("Y-m-d");
                 ?>
-                <td><?= $this->pengajuan_m->format_tanggal($now) ?><br><b>Dekan, <?php echo date_indo($now); ?><br><br><br><br><br><?= $surat->ttd; ?></b></td>
+                <td><?= $this->pengajuan_m->format_tanggal($surat->tanggal) ?><br><b>Dekan, <?php echo date_indo($now); ?><br><br><br><br><br><?= $surat->ttd; ?></b></td>
             </tr>
         </table>
     </center>

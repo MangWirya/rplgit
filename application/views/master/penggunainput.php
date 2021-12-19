@@ -1,5 +1,5 @@
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $(function() {
         $("#level").change(function() {
             if ($(this).val() != "user") {
@@ -9,7 +9,7 @@
             }
         });
     });
-</script>
+</script> -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">Tambah Data User</h1>
 </div>
@@ -28,9 +28,9 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-6" id="nim" style="display: none">
+                <div class="col-md-6" id="nim">
                     <div class="form-group">
-                        <label for="nip">NIM</label>
+                        <label for="nip">NIM / NIP</label>
                         <input type="text" class="form-control" name="nim" required>
                     </div>
                 </div>

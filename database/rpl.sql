@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 05:17 AM
+-- Generation Time: Dec 17, 2021 at 06:23 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -108,6 +108,26 @@ CREATE TABLE `suratpengumuman` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `surattugas`
+--
+
+CREATE TABLE `surattugas` (
+  `idsurattugas` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `judultugas` text NOT NULL,
+  `penyelenggarakegiatan` text NOT NULL,
+  `deskripsi` text NOT NULL,
+  `tanggal` text NOT NULL,
+  `tanggalmulai` date NOT NULL,
+  `tanggalselesai` date NOT NULL,
+  `status` text NOT NULL,
+  `ttd` text NOT NULL,
+  `waktu` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `suratupload`
 --
 
@@ -120,6 +140,14 @@ CREATE TABLE `suratupload` (
   `status` text NOT NULL,
   `waktu` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `suratupload`
+--
+
+INSERT INTO `suratupload` (`idsuratupload`, `iduser`, `judul`, `file`, `tanggal`, `status`, `waktu`) VALUES
+(1, 15, 'Sambal Kentang', 'bbd3374af64b386220f9f82102ada1e0.pdf', '2021-07-07', 'Menunggu Persetujuan', '0000-00-00 00:00:00'),
+(2, 15, 'Surat Bansos', '4c2750dfbcbf35dfa8145185f50dcaf5.pdf', '2021-12-17', 'Menunggu Persetujuan', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -149,8 +177,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`iduser`, `email`, `password`, `nim`, `nik`, `nama`, `tempatlahir`, `tanggallahir`, `jeniskelamin`, `agama`, `alamat`, `pekerjaan`, `notlp`, `level`) VALUES
-(15, 'admin@gmail.com', '$2y$10$cBQR1nZ8R6UBKIIc1ACseu1ZAGjXrGE.OCOWBa3zBY5rq5p7UCfvu', 'admin', 'admin', 'Administrator', 'Palembang', '2000-01-01', 'Pria', 'Islam', 'Jl. Nungcik', 'Admin', '08988387271', 'admin'),
-(18, 'taufikgoodman@gmail.com', '$2y$10$/KDa3D6ZIsZjn68EXTsDaO04p86qe0jvGXUhujQvKoQQQR/emtHGK', '123', '123', 'Taufik', 'Palembang', '2021-11-22', 'Pria', 'Islam', 'Jl. Pasundan', 'PNS', '08988387271', 'user');
+(15, 'admin@gmail.com', '$2y$10$cBQR1nZ8R6UBKIIc1ACseu1ZAGjXrGE.OCOWBa3zBY5rq5p7UCfvu', 'admin', 'admin', 'Administrator', 'Palembang', '2000-01-01', 'Pria', 'Islam', 'Jl. Nungcik', 'Admin', '08988387271', 'admin');
 
 --
 -- Indexes for dumped tables
@@ -179,6 +206,12 @@ ALTER TABLE `suratkerjapraktek`
 --
 ALTER TABLE `suratpengumuman`
   ADD PRIMARY KEY (`idsuratpengumuman`);
+
+--
+-- Indexes for table `surattugas`
+--
+ALTER TABLE `surattugas`
+  ADD PRIMARY KEY (`idsurattugas`);
 
 --
 -- Indexes for table `suratupload`
@@ -221,16 +254,22 @@ ALTER TABLE `suratpengumuman`
   MODIFY `idsuratpengumuman` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `surattugas`
+--
+ALTER TABLE `surattugas`
+  MODIFY `idsurattugas` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `suratupload`
 --
 ALTER TABLE `suratupload`
-  MODIFY `idsuratupload` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idsuratupload` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `iduser` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

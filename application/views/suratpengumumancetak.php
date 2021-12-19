@@ -56,9 +56,9 @@
                         <br><br>
                         <font size="2"><b><?= $surat->judulpengumuman; ?></b></font>
                         <br><br>
-                        <font size="2"><b>NOMOR: <?= $surat->idsuratupload . '1/P/C/FTI/2021' ?></b></font>
+                        <font size="2"><b>NOMOR: <?= $surat->idsuratupload . '/P/C/FTI/2021' ?></b></font>
                         <br><br>
-                        <font size="2">TANGGAL SURAT: <?= $this->pengajuan_m->format_tanggal($surat->tanggal) . '1/P/C/FTI/2021' ?></font>
+                        <font size="2">TANGGAL SURAT: <?= $this->pengajuan_m->format_tanggal($surat->tanggal) . '/P/C/FTI/2021' ?></font>
                     </center>
                 </td>
             </tr>
@@ -86,7 +86,7 @@
         <br>
         <center>
             <font size="2">
-                Yogyakarta,<?= $this->pengajuan_m->format_tanggal(date("Y-m-d")) ?>
+                Yogyakarta,<?= $this->pengajuan_m->format_tanggal($surat->tanggal) ?>
                 <br><br>
                 Mengetahui
             </font>

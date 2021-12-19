@@ -58,13 +58,8 @@ class Pengguna extends CI_Controller
         $this->form_validation->set_error_delimiters('<span class="text-danger">', '</span>');
 
         if ($this->form_validation->run()) {
-            if ($this->input->post('level') == "user") {
-                $nim = $this->input->post('nim', true);
-            } else {
-                $nim = "";
-            }
             $data = [
-                'nim' => $nim,
+                'nim' => $nim = $this->input->post('nim', true),
                 'nik' => $this->input->post('nik', true),
                 'nama' => $this->input->post('nama', true),
                 'tempatlahir' => $this->input->post('tempatlahir', true),

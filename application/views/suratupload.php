@@ -2,7 +2,7 @@
     <h1 class="h3 mb-0 text-gray-800">Data Surat Upload</h1>
 </div>
 <div class="card shadow mb-4">
-    <?php if (__session('level') != 'admin') { ?>
+    <?php if (__session('level') == 'admin') { ?>
         <div class="card-header py-3">
             <a href="<?= base_url('pengajuan/suratuploadtambah') ?>" class="btn btn-primary btn-icon-split btn-sm">
                 <span class="icon text-white-50">
@@ -21,8 +21,10 @@
                         <th>JUDUL SURAT</th>
                         <th>TANGGAL SURAT</th>
                         <th>DOWNLOAD</th>
-                        <th>STATUS</th>
-                        <th width="50">AKSI</th>
+                        <?php
+                        if ($this->session->userdata('level') == 'admin') { ?>
+                            <th width="50">AKSI</th>
+                        <?php } ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,16 +45,10 @@
                             }
                             if ($this->session->userdata('level') == 'admin') { ?>
                                 <td>
-                                    <a href="<?= site_url('pengajuan/suratuploadverifikasi/' . $row['idsuratupload']); ?>" class="btn btn-sm btn-<?= $warna ?>" data-toggle="tooltip" data-placement="top" title="Verifikasi"><i class="fas fa-eye"> <?= $row['status']; ?></i></a>
-                                </td>
-                            <?php } elseif ($this->session->userdata('level') == 'user') { ?>
-                                <td><?= $row['status']; ?>
+                                    <a href="<?= site_url('pengajuan/suratuploadedit/' . $row['idsuratupload']); ?>" class="btn btn-sm btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Lihat / Edit"><i class="fas fa-edit"></i></a>
+                                    <a href="<?= site_url('pengajuan/suratuploadhapus/' . $row['idsuratupload']); ?>" class="btn btn-sm btn-danger btn-circle btn-hapus" data-toggle="tooltip" data-placement="top" title="Hapus Data"><i class="fas fa-trash"></i></a>
                                 </td>
                             <?php } ?>
-                            <td>
-                                <a href="<?= site_url('pengajuan/suratuploadedit/' . $row['idsuratupload']); ?>" class="btn btn-sm btn-primary btn-circle" data-toggle="tooltip" data-placement="top" title="Lihat / Edit"><i class="fas fa-edit"></i></a>
-                                <a href="<?= site_url('pengajuan/suratuploadhapus/' . $row['idsuratupload']); ?>" class="btn btn-sm btn-danger btn-circle btn-hapus" data-toggle="tooltip" data-placement="top" title="Hapus Data"><i class="fas fa-trash"></i></a>
-                            </td>
                         </tr>
                     <?php endforeach; ?>
                 </tbody>

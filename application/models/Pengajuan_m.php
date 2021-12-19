@@ -68,10 +68,10 @@ class Pengajuan_m extends CI_Model
 
     public function jumlahpermohonan($where)
     {
-        // $this->db->select('*');
-        // $this->db->from('suratberitaacara');
-        // $this->db->where($where);
-        // $a = $this->db->get()->num_rows();
+        $this->db->select('*');
+        $this->db->from('surattugas');
+        $this->db->where($where);
+        $a = $this->db->get()->num_rows();
         $this->db->select('*');
         $this->db->from('suratizinkegiatan');
         $this->db->where($where);
@@ -80,7 +80,7 @@ class Pengajuan_m extends CI_Model
         $this->db->from('suratkerjapraktek');
         $this->db->where($where);
         $c = $this->db->get()->num_rows();
-        $hasil = $b + $c;
+        $hasil = $a + $b + $c;
         return $hasil;
     }
 
